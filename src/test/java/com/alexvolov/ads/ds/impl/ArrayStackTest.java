@@ -1,7 +1,6 @@
 package com.alexvolov.ads.ds.impl;
 
 import com.alexvolov.ads.ds.Stack;
-import com.alexvolov.ads.ds.impl.ArrayStack;
 import org.junit.Before;
 import org.junit.Test;
 
