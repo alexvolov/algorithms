@@ -12,7 +12,8 @@ import static com.alexvolov.ads.ds.common.GraphType.WEIGHTED_DIRECTED;
 import static com.alexvolov.ads.ds.common.GraphType.WEIGHTED_UNDIRECTED;
 
 /**
- * An implementation of graph data structure that is based on adjacency matrix.
+ * Simple implementation of a graph data structure that is based on adjacency matrix.
+ * My version doesn't support resizing and two vertices can't have more than one edge.
  *
  * @author Alexander Volov (mailto: alevolov@gmail.com)
  * @version 11.02.15
