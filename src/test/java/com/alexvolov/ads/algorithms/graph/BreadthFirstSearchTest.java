@@ -23,6 +23,7 @@ public class BreadthFirstSearchTest {
     @Test
     public void testTraverse() {
         // data
+        new BreadthFirstSearch();
         List<Integer> expected = new ArrayList<Integer>();
         expected.add(1);
         expected.add(2);

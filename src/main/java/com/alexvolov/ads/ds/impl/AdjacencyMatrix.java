@@ -3,6 +3,7 @@ package com.alexvolov.ads.ds.impl;
 import com.alexvolov.ads.ds.Graph;
 import com.alexvolov.ads.ds.common.GraphType;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
