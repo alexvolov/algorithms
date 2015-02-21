@@ -429,9 +429,8 @@ public class AdjacencyListTest {
         // data
         final int numberOfVertices = 7;
         Set<Integer> expected = new HashSet<Integer>();
-        expected.add(2);
         expected.add(3);
-        expected.add(5);
+        expected.add(6);
 
         // prepare
         adjacencyList = new AdjacencyList(numberOfVertices, WEIGHTED_DIRECTED);
@@ -446,10 +445,10 @@ public class AdjacencyListTest {
         adjacencyList.addEdge(5,6, 80);
 
         // test
-        Set<Integer> actual = adjacencyList.getNeighbours(6);
+        Set<Integer> actual = adjacencyList.getNeighbours(2);
 
         // verify
-        assertThat(expected, is(actual));
+        assertThat(actual, is(expected));
     }
 
     private Map<Integer, Integer> toMap(Integer[][] array) {

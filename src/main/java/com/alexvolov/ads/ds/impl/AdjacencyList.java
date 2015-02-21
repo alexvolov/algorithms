@@ -113,7 +113,7 @@ public class AdjacencyList implements Graph {
         final Map<Integer, Integer> vertexObj = list.get(vertex);
         if (null != vertexObj) {
             for (Integer e : vertexObj.keySet()) {
-                if (e >= 0) {
+                if (vertexObj.get(e) >= 0) {
                     result.add(e);
                 }
             }

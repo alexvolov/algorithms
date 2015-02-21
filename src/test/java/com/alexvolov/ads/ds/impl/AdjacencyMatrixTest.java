@@ -467,7 +467,7 @@ public class AdjacencyMatrixTest {
         Set<Integer> actual = adjacencyMatrix.getNeighbours(2);
 
         // verify
-        assertThat(expected, is(actual));
+        assertThat(actual, is(expected));
     }
 
     private boolean isEqual(Integer[][] expected, Integer[][] actual) {
