@@ -131,7 +131,7 @@ public class AdjacencyMatrix implements Graph {
         }
         Set<Integer> res = new HashSet<Integer>();
         for (int i = 0; i < size; i++) {
-            if (null != matrix[vertex][i]) {
+            if (null != matrix[vertex][i] && matrix[vertex][i] >= 0) {
                 res.add(i);
             }
         }

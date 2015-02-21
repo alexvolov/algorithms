@@ -4,6 +4,7 @@ import com.alexvolov.ads.ds.Graph;
 import com.alexvolov.ads.ds.common.GraphType;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -108,10 +109,14 @@ public class AdjacencyList implements Graph {
      */
     @Override
     public Set<Integer> getNeighbours(int vertex) {
-        Set<Integer> result = null;
+        Set<Integer> result = new HashSet<Integer>();
         final Map<Integer, Integer> vertexObj = list.get(vertex);
         if (null != vertexObj) {
-            result = vertexObj.keySet();
+            for (Integer e : vertexObj.keySet()) {
+                if (e >= 0) {
+                    result.add(e);
+                }
+            }
         }
         return result;
     }
