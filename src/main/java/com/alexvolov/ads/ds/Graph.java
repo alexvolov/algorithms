@@ -1,5 +1,7 @@
 package com.alexvolov.ads.ds;
 
+import com.alexvolov.ads.ds.common.GraphType;
+
 import java.util.Set;
 
 /**
@@ -67,5 +69,28 @@ public interface Graph {
      * @param j destination vertex.
      */
     void removeEdge(int i, int j);
+
+    /**
+     * Returns set of nodes without ancestors.
+     *
+     * @return {@code Set} of vertices.
+     */
+    Set<Integer> startNodes();
+
+    /**
+     * Checks whether the vertex has any parents;
+     *
+     * @param v given vertex.
+     *
+     * @return {@code true} if hase, otherwise {@code false}.
+     */
+    boolean hasParents(Integer v);
+
+    /**
+     * Returns type of the graph.
+     *
+     * @return {@code GraphType} enumeration.
+     */
+    GraphType getType();
 
 }

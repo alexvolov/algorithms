@@ -31,9 +31,6 @@ public class DepthFirstSearch {
      * @return {@code List} of visited vertices in order of visits.
      */
     public List<Integer> iterativeSearch(Graph graph, Integer node) {
-        if (null == graph) {
-            throw new NullPointerException("Graph cannot be null.");
-        }
         this.graph = graph;
         visited = new ArrayList<Integer>();
 

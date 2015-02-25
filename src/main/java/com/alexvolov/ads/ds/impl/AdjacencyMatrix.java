@@ -5,6 +5,7 @@ import com.alexvolov.ads.ds.common.GraphType;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import static com.alexvolov.ads.ds.common.GraphType.SIMPLE_DIRECTED;
@@ -25,6 +26,7 @@ public class AdjacencyMatrix implements Graph {
     private int size;
     private GraphType graphType;
     private int numberOfEdges;
+    private Set<Integer> startNodes;
 
     /**
      * Constrictor which creates a new instance of adjacency matrix.
@@ -39,8 +41,13 @@ public class AdjacencyMatrix implements Graph {
 
         this.size = size;
         this.matrix = new Integer[size][size];
+        this.startNodes = new HashSet<Integer>();
         this.graphType = graphType;
         this.numberOfEdges = 0;
+
+        for (int i = 0 ; i < size ; i++) {
+            startNodes.add(i);
+        }
     }
 
     /**
@@ -70,6 +77,7 @@ public class AdjacencyMatrix implements Graph {
         } else {
             matrix[j][i] = weight;
         }
+        startNodes.remove(j);
         numberOfEdges++;
     }
 
@@ -92,6 +100,7 @@ public class AdjacencyMatrix implements Graph {
         } else {
             matrix[j][i] = 1;
         }
+        startNodes.remove(j);
         numberOfEdges++;
     }
 
@@ -106,6 +115,17 @@ public class AdjacencyMatrix implements Graph {
         matrix[i][j] = null;
         matrix[j][i] = null;
         numberOfEdges--;
+        if (!hasParents(j)) {
+            startNodes.add(j);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Set<Integer> startNodes() {
+        return startNodes;
     }
 
     /**
@@ -186,4 +206,28 @@ public class AdjacencyMatrix implements Graph {
         }
         return result.toString();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean hasParents(Integer v) {
+        boolean result = false;
+        for (int i = 0; i < size; i++) {
+            if (null != matrix[i][v] && matrix[i][v] > 0) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public GraphType getType() {
+        return graphType;
+    }
+
 }

@@ -26,6 +26,7 @@ public class AdjacencyList implements Graph {
     private int size;
     private GraphType graphType;
     private int numberOfEdges;
+    private Set<Integer> startNodes;
 
     /**
      * Constrictor which creates a new instance of adjacency list.
@@ -40,11 +41,13 @@ public class AdjacencyList implements Graph {
 
         this.size = size;
         this.list = new HashMap<Integer, Map<Integer, Integer>>();
+        this.startNodes = new HashSet<Integer>();
         this.graphType = graphType;
         this.numberOfEdges = 0;
 
         for (int i = 0 ; i < size ; i++) {
             list.put(i, new HashMap<Integer, Integer>());
+            startNodes.add(i);
         }
     }
 
@@ -69,6 +72,7 @@ public class AdjacencyList implements Graph {
         } else {
             destination.put(i, 1);
         }
+        startNodes.remove(j);
         numberOfEdges++;
     }
 
@@ -101,6 +105,7 @@ public class AdjacencyList implements Graph {
         } else {
             destination.put(i, weight);
         }
+        startNodes.remove(j);
         numberOfEdges++;
     }
 
@@ -163,6 +168,17 @@ public class AdjacencyList implements Graph {
         origin.remove(j);
         destination.remove(i);
         numberOfEdges--;
+        if (!hasParents(j)) {
+            startNodes.add(j);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Set<Integer> startNodes() {
+        return startNodes;
     }
 
     /**
@@ -182,6 +198,30 @@ public class AdjacencyList implements Graph {
             copy.put(i, copyEntry);
         }
         return copy;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean hasParents(Integer v) {
+        boolean result = false;
+        final Map<Integer, Integer> destination = list.get(v);
+        for (Integer key : destination.keySet()) {
+            if (destination.get(key) < 0) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public GraphType getType() {
+        return graphType;
     }
 
 }
