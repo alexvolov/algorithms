@@ -67,10 +67,12 @@ public class AdjacencyList implements Graph {
         final Map<Integer, Integer> origin = list.get(i);
         origin.put(j, 1);
         final Map<Integer, Integer> destination = list.get(j);
-        if (graphType == SIMPLE_DIRECTED) {
-            destination.put(i, -1);
-        } else {
-            destination.put(i, 1);
+        if (!destination.containsKey(i)) {
+            if (graphType == SIMPLE_DIRECTED) {
+                destination.put(i, -1);
+            } else {
+                destination.put(i, 1);
+            }
         }
         startNodes.remove(j);
         numberOfEdges++;
@@ -100,10 +102,12 @@ public class AdjacencyList implements Graph {
         final Map<Integer, Integer> origin = list.get(i);
         origin.put(j, weight);
         final Map<Integer, Integer> destination = list.get(j);
-        if (graphType == WEIGHTED_DIRECTED) {
-            destination.put(i, weight * (-1));
-        } else {
-            destination.put(i, weight);
+        if (!destination.containsKey(i)) {
+            if (graphType == WEIGHTED_DIRECTED) {
+                destination.put(i, weight * (-1));
+            } else {
+                destination.put(i, weight);
+            }
         }
         startNodes.remove(j);
         numberOfEdges++;
@@ -177,7 +181,7 @@ public class AdjacencyList implements Graph {
      * {@inheritDoc}
      */
     @Override
-    public Set<Integer> startNodes() {
+    public Set<Integer> getStartNodes() {
         return startNodes;
     }
 

@@ -108,7 +108,7 @@ public class AdjacencyListTest {
         expected.put(1, toMap(new Integer[][]{ {2, 1}, {4, 1} }));
         expected.put(2, toMap(new Integer[][]{ {1, -1}, {3, 1}, {6, 1}  }));
         expected.put(3, toMap(new Integer[][]{ {2, -1}, {4, 1}, {6, 1}  }));
-        expected.put(4, toMap(new Integer[][]{ {1, -1}, {3, -1}, {4, -1}, {5, 1}  }));
+        expected.put(4, toMap(new Integer[][]{ {1, -1}, {3, -1}, {4, 1}, {5, 1}  }));
         expected.put(5, toMap(new Integer[][]{ {4, -1}, {6, 1} }));
         expected.put(6, toMap(new Integer[][]{ {2, -1}, {3, -1}, {5, -1}  }));
 
@@ -144,7 +144,7 @@ public class AdjacencyListTest {
         expected.put(1, toMap(new Integer[][]{ {4, 1} }));
         expected.put(2, toMap(new Integer[][]{ {3, 1}, {6, 1}  }));
         expected.put(3, toMap(new Integer[][]{ {2, -1}, {4, 1}, {6, 1}  }));
-        expected.put(4, toMap(new Integer[][]{ {1, -1}, {3, -1}, {4, -1}, {5, 1}  }));
+        expected.put(4, toMap(new Integer[][]{ {1, -1}, {3, -1}, {4, 1}, {5, 1}  }));
         expected.put(5, toMap(new Integer[][]{ {4, -1} }));
         expected.put(6, toMap(new Integer[][]{ {2, -1}, {3, -1}  }));
 
@@ -182,7 +182,7 @@ public class AdjacencyListTest {
         expected.put(1, toMap(new Integer[][]{ {2, 10}, {4, 100} }));
         expected.put(2, toMap(new Integer[][]{ {1, -10}, {3, 150}, {6, 175}  }));
         expected.put(3, toMap(new Integer[][]{ {2, -150}, {4, 15}, {6, 300}  }));
-        expected.put(4, toMap(new Integer[][]{ {1, -100}, {3, -15}, {4, -20}, {5, 326}  }));
+        expected.put(4, toMap(new Integer[][]{ {1, -100}, {3, -15}, {4, 20}, {5, 326}  }));
         expected.put(5, toMap(new Integer[][]{ {4, -326}, {6, 80} }));
         expected.put(6, toMap(new Integer[][]{ {2, -175}, {3, -300}, {5, -80}  }));
 
@@ -218,7 +218,7 @@ public class AdjacencyListTest {
         expected.put(1, toMap(new Integer[][]{ {4, 100} }));
         expected.put(2, toMap(new Integer[][]{ {3, 150}, {6, 175}  }));
         expected.put(3, toMap(new Integer[][]{ {2, -150}, {4, 15}, {6, 300}  }));
-        expected.put(4, toMap(new Integer[][]{ {1, -100}, {3, -15}, {4, -20}, {5, 326}  }));
+        expected.put(4, toMap(new Integer[][]{ {1, -100}, {3, -15}, {4, 20}, {5, 326}  }));
         expected.put(5, toMap(new Integer[][]{ {4, -326} }));
         expected.put(6, toMap(new Integer[][]{ {2, -175}, {3, -300}  }));
 

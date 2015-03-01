@@ -72,10 +72,12 @@ public class AdjacencyMatrix implements Graph {
         }
 
         matrix[i][j] = weight;
-        if (graphType == WEIGHTED_DIRECTED) {
-            matrix[j][i] = weight * (-1);
-        } else {
-            matrix[j][i] = weight;
+        if (null == matrix[j][i]) {
+            if (graphType == WEIGHTED_DIRECTED) {
+                matrix[j][i] = weight * (-1);
+            } else {
+                matrix[j][i] = weight;
+            }
         }
         startNodes.remove(j);
         numberOfEdges++;
@@ -95,10 +97,12 @@ public class AdjacencyMatrix implements Graph {
         }
 
         matrix[i][j] = 1;
-        if (graphType == SIMPLE_DIRECTED) {
-            matrix[j][i] = -1;
-        } else {
-            matrix[j][i] = 1;
+        if (null == matrix[j][i]) {
+            if (graphType == SIMPLE_DIRECTED) {
+                matrix[j][i] = -1;
+            } else {
+                matrix[j][i] = 1;
+            }
         }
         startNodes.remove(j);
         numberOfEdges++;
@@ -124,7 +128,7 @@ public class AdjacencyMatrix implements Graph {
      * {@inheritDoc}
      */
     @Override
-    public Set<Integer> startNodes() {
+    public Set<Integer> getStartNodes() {
         return startNodes;
     }
 

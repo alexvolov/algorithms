@@ -111,7 +111,7 @@ public class AdjacencyMatrixTest {
                 new Integer[] {null, null, 1   , null, 1   , null, null},
                 new Integer[] {null, -1  , null, 1   , null, null, 1   },
                 new Integer[] {null, null, -1  , null, 1   , null, 1   },
-                new Integer[] {null, -1  , null, -1  , -1  , 1   , null},
+                new Integer[] {null, -1  , null, -1  , 1  , 1   , null},
                 new Integer[] {null, null, null, null, -1  , null, 1   },
                 new Integer[] {null, null, -1  , -1  , null, -1   , null}
         };
@@ -148,7 +148,7 @@ public class AdjacencyMatrixTest {
                 new Integer[] {null, null, null, null, 1   , null, null},
                 new Integer[] {null, null, null, 1   , null, null, 1   },
                 new Integer[] {null, null, -1  , null, 1   , null, 1   },
-                new Integer[] {null, -1  , null, -1  , -1  , 1   , null},
+                new Integer[] {null, -1  , null, -1  , 1  , 1   , null},
                 new Integer[] {null, null, null, null, -1  , null, null},
                 new Integer[] {null, null, - 1 , -1  , null, null, null}
         };
@@ -187,7 +187,7 @@ public class AdjacencyMatrixTest {
                 new Integer[] {null, null, 10  , null, 100 , null, null},
                 new Integer[] {null, -10 , null, 150 , null, null, 175 },
                 new Integer[] {null, null, -150, null, 15  , null, 300 },
-                new Integer[] {null, -100, null, -15 , -20 , 326 , null},
+                new Integer[] {null, -100, null, -15 , 20 , 326 , null},
                 new Integer[] {null, null, null, null, -326, null, 80  },
                 new Integer[] {null, null, -175, -300, null, -80 , null}
         };
@@ -224,7 +224,7 @@ public class AdjacencyMatrixTest {
                 new Integer[] {null, null, null, null, 100 , null, null},
                 new Integer[] {null, null, null, 150 , null, null, 175 },
                 new Integer[] {null, null, -150, null, 15  , null, 300 },
-                new Integer[] {null, -100, null, -15 , -20 , 326 , null},
+                new Integer[] {null, -100, null, -15 , 20 , 326 , null},
                 new Integer[] {null, null, null, null, -326, null, null},
                 new Integer[] {null, null, -175, -300, null, null , null}
         };

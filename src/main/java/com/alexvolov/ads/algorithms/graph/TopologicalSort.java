@@ -44,7 +44,7 @@ public class TopologicalSort {
         List<Integer> sorted = new ArrayList<Integer>();
 
         Queue<Integer> startNodes = new LinkedListQueue<Integer>();
-        for (Integer i : graph.startNodes()) {
+        for (Integer i : graph.getStartNodes()) {
             startNodes.enqueue(i);
         }
 
@@ -84,7 +84,7 @@ public class TopologicalSort {
         List<Integer> sorted = new ArrayList<Integer>();
         List<Integer> visited = new ArrayList<Integer>();
 
-        for (Integer node : graph.startNodes()) {
+        for (Integer node : graph.getStartNodes()) {
             dfsSearch(graph, node, visited, sorted);
         }
         Collections.reverse(sorted);

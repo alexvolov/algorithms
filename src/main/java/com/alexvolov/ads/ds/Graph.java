@@ -75,7 +75,7 @@ public interface Graph {
      *
      * @return {@code Set} of vertices.
      */
-    Set<Integer> startNodes();
+    Set<Integer> getStartNodes();
 
     /**
      * Checks whether the vertex has any parents;
