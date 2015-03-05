@@ -32,18 +32,18 @@ public interface Heap {
     void heapify(Integer[] array);
 
     /**
-     * Returns maximum element of the heap.
+     * Returns top element of the heap.
      *
-     * @return - the largest element in the heap.
+     * @return - the top element in the heap.
      */
-    Integer findMax();
+    Integer getTop();
 
     /**
-     * Returns maximum element of the heap and removing the item from the heap.
+     * Returns top element of the heap and removing the item from the heap.
      *
-     * @return the largest element.
+     * @return the top element.
      */
-    Integer deleteMax();
+    Integer deleteTop();
 
     /**
      * Checks whether the heap is empty.

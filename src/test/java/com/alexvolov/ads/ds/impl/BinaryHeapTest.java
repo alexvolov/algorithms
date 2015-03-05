@@ -1,6 +1,7 @@
 package com.alexvolov.ads.ds.impl;
 
 import com.alexvolov.ads.ds.Heap;
+import com.alexvolov.ads.ds.common.HeapType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +21,7 @@ public class BinaryHeapTest {
 
     @Before
     public void setUp() {
-        heap = new BinaryHeap(5);
+        heap = new BinaryHeap(5, HeapType.MAX_HEAP);
 
         heap.insert(1);
         heap.insert(2);
@@ -41,7 +42,7 @@ public class BinaryHeapTest {
         int expected = 5;
 
         // test
-        int actual = heap.findMax();
+        int actual = heap.getTop();
 
         // verify
         assertTrue(expected == actual);
@@ -55,14 +56,53 @@ public class BinaryHeapTest {
         int expectedSize= 4;
 
         // test
-        int actual = heap.deleteMax();
+        int actual = heap.deleteTop();
 
         // verify
         assertTrue(expected == actual);
-        assertTrue(expectedNewMax == heap.findMax());
+        assertTrue(expectedNewMax == heap.getTop());
         assertFalse(heap.isEmpty());
         assertTrue(expectedSize == heap.getSize());
     }
+
+    @Test
+    public void deleteMin() {
+        // prepare
+        heap = new BinaryHeap(5, HeapType.MIN_HEAP);
+        heap.insert(1);
+        heap.insert(2);
+        heap.insert(3);
+        heap.insert(4);
+        heap.insert(5);
+
+        // verify and test
+        assertEquals(Integer.valueOf(1), heap.deleteTop());
+        assertEquals(Integer.valueOf(2), heap.deleteTop());
+        assertEquals(Integer.valueOf(3), heap.deleteTop());
+        assertEquals(Integer.valueOf(4), heap.deleteTop());
+        assertEquals(Integer.valueOf(5), heap.deleteTop());
+        assertTrue(heap.isEmpty());
+    }
+
+    @Test
+    public void deleteMax() {
+        // prepare
+        heap = new BinaryHeap(5, HeapType.MAX_HEAP);
+        heap.insert(1);
+        heap.insert(2);
+        heap.insert(3);
+        heap.insert(4);
+        heap.insert(5);
+
+        // verify and test
+        assertEquals(Integer.valueOf(5), heap.deleteTop());
+        assertEquals(Integer.valueOf(4), heap.deleteTop());
+        assertEquals(Integer.valueOf(3), heap.deleteTop());
+        assertEquals(Integer.valueOf(2), heap.deleteTop());
+        assertEquals(Integer.valueOf(1), heap.deleteTop());
+        assertTrue(heap.isEmpty());
+    }
+
 
     @Test
     public void testHeapify() {
@@ -74,7 +114,7 @@ public class BinaryHeapTest {
 
         // verify
         assertEquals(actual.length, heap.getSize());
-        assertTrue(6 == heap.findMax());
+        assertTrue(6 == heap.getTop());
     }
 
     @Test

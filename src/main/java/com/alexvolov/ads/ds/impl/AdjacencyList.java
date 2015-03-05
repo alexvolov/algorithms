@@ -228,4 +228,13 @@ public class AdjacencyList implements Graph {
         return graphType;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getWeight(int source, int destination) {
+        final Map<Integer, Integer> origin = list.get(source);
+        return origin.get(destination);
+    }
+
 }

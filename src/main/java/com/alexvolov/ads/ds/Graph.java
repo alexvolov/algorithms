@@ -93,4 +93,13 @@ public interface Graph {
      */
     GraphType getType();
 
+    /**
+     * Returns weight between two vertices.
+     *
+     * @param source vertex.
+     * @param destination vertex.
+     * @return weight of type {@code int}.
+     */
+    int getWeight(int source, int destination);
+
 }

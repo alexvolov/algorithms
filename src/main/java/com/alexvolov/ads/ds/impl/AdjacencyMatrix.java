@@ -234,4 +234,12 @@ public class AdjacencyMatrix implements Graph {
         return graphType;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getWeight(int source, int destination) {
+        return matrix[source][destination];
+    }
+
 }

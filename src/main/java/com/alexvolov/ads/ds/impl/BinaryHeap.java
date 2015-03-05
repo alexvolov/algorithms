@@ -1,6 +1,7 @@
 package com.alexvolov.ads.ds.impl;
 
 import com.alexvolov.ads.ds.Heap;
+import com.alexvolov.ads.ds.common.HeapType;
 
 /**
  * This is a very simple implementation of the max binary heap which is based
@@ -14,17 +15,20 @@ public class BinaryHeap implements Heap {
     private Integer[] heap;
     private int size;
     private int capacity;
+    private HeapType heapType;
 
     /**
      * Constructor. Creates a new, empty binary heap.
      *
      * @param capacity - capacity of the heap.
+     * @param heapType - type of the heap.
      */
-    public BinaryHeap(int capacity) {
+    public BinaryHeap(int capacity, HeapType heapType) {
         if (capacity < 1) {
             throw new IllegalArgumentException("Capacity must be greater that zero.");
         } else {
             this.capacity = capacity;
+            this.heapType = heapType;
             createHeap();
         }
     }
@@ -43,7 +47,7 @@ public class BinaryHeap implements Heap {
             while (newIndex > 0) {
                 int parentIndex = getParentIndex(newIndex);
                 if (parentIndex >= 0) {
-                    if (heap[newIndex] > heap[parentIndex]) {
+                    if (doSwap(newIndex, parentIndex)) {
                         swap(parentIndex, newIndex);
                     } else {
                         newIndex = parentIndex;
@@ -71,7 +75,7 @@ public class BinaryHeap implements Heap {
      * {@inheritDoc}
      */
     @Override
-    public Integer findMax() {
+    public Integer getTop() {
         Integer result = null;
         if (!isEmpty()) {
             result = heap[0];
@@ -83,7 +87,7 @@ public class BinaryHeap implements Heap {
      * {@inheritDoc}
      */
     @Override
-    public Integer deleteMax() {
+    public Integer deleteTop() {
         Integer max = null;
         if (!isEmpty()) {
             max = heap[0];
@@ -93,14 +97,26 @@ public class BinaryHeap implements Heap {
             while (true) {
                 leftIndex = getLeftIndex(newIndex);
                 rightIndex = getRightIndex(newIndex);
-                if (leftIndex > 0 && heap[newIndex] < heap[leftIndex] && (rightIndex == -1 || heap[leftIndex] >= heap[rightIndex])) {
-                    swap(newIndex, leftIndex);
-                    newIndex = leftIndex;
-                } else if (rightIndex > 1 && heap[newIndex] < heap[rightIndex] && (leftIndex == -1 || heap[rightIndex] >= heap[leftIndex])) {
-                    swap(newIndex, rightIndex);
-                    newIndex = rightIndex;
+                if (heapType == HeapType.MAX_HEAP) {
+                    if (leftIndex > 0 && heap[newIndex] < heap[leftIndex] && (rightIndex == -1 || heap[leftIndex] >= heap[rightIndex])) {
+                        swap(newIndex, leftIndex);
+                        newIndex = leftIndex;
+                    } else if (rightIndex > 1 && heap[newIndex] < heap[rightIndex] && (leftIndex == -1 || heap[rightIndex] >= heap[leftIndex])) {
+                        swap(newIndex, rightIndex);
+                        newIndex = rightIndex;
+                    } else {
+                        break;
+                    }
                 } else {
-                    break;
+                    if (leftIndex > 0 && heap[newIndex] > heap[leftIndex] && (rightIndex == -1 || heap[leftIndex] <= heap[rightIndex])) {
+                        swap(newIndex, leftIndex);
+                        newIndex = leftIndex;
+                    } else if (rightIndex > 1 && heap[newIndex] > heap[rightIndex] && (leftIndex == -1 || heap[rightIndex] <= heap[leftIndex])) {
+                        swap(newIndex, rightIndex);
+                        newIndex = rightIndex;
+                    } else {
+                        break;
+                    }
                 }
             }
             size--;
@@ -173,6 +189,11 @@ public class BinaryHeap implements Heap {
     private void createHeap() {
         heap = new Integer[capacity];
         size = 0;
+    }
+
+    private boolean doSwap(int newIndex, int parentIndex) {
+        return (heapType == HeapType.MAX_HEAP && heap[newIndex] > heap[parentIndex]) ||
+                (heapType == HeapType.MIN_HEAP && heap[newIndex] < heap[parentIndex]);
     }
 
 }
