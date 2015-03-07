@@ -40,10 +40,11 @@ public class BellmanFordAlgorithm {
         distance[source] = source;
 
         // relax edges
-        for (int i = 0; i < graph.getSize(); i++) {
+        for (int i = 1; i < graph.getSize(); i++) {
             for (GraphEdge edge : graph.getEdges().keySet()) {
+                System.out.println(edge.getSource() + "-->" + edge.getDestination());
                 int weight = distance[edge.getSource()] + graph.getEdges().get(edge);
-                if (weight < distance[edge.getDestination()]) {
+                if (distance[edge.getSource()] != INFINITY && weight < distance[edge.getDestination()]) {
                     distance[edge.getDestination()] = weight;
                     predecessor[edge.getDestination()] = edge.getSource();
                 }
