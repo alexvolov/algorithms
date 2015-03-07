@@ -1,12 +1,10 @@
 package com.alexvolov.ads.ds.impl;
 
 import com.alexvolov.ads.ds.Graph;
+import com.alexvolov.ads.ds.common.GraphEdge;
 import com.alexvolov.ads.ds.common.GraphType;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static com.alexvolov.ads.ds.common.GraphType.SIMPLE_DIRECTED;
 import static com.alexvolov.ads.ds.common.GraphType.SIMPLE_UNDIRECTED;
@@ -27,6 +25,7 @@ public class AdjacencyMatrix implements Graph {
     private GraphType graphType;
     private int numberOfEdges;
     private Set<Integer> startNodes;
+    private Map<GraphEdge, Integer> edges;
 
     /**
      * Constrictor which creates a new instance of adjacency matrix.
@@ -39,6 +38,7 @@ public class AdjacencyMatrix implements Graph {
             throw new IllegalArgumentException("Number of vertices must be grater than zero.");
         }
 
+        this.edges = new HashMap<GraphEdge, Integer>();
         this.size = size;
         this.matrix = new Integer[size][size];
         this.startNodes = new HashSet<Integer>();
@@ -71,6 +71,7 @@ public class AdjacencyMatrix implements Graph {
             throw new IllegalArgumentException("Weight cannot be negative.");
         }
 
+        edges.put(new GraphEdge(i, j), weight);
         matrix[i][j] = weight;
         if (null == matrix[j][i]) {
             if (graphType == WEIGHTED_DIRECTED) {
@@ -96,6 +97,7 @@ public class AdjacencyMatrix implements Graph {
             throw new IllegalArgumentException("Vertex is not found in matrix.");
         }
 
+        edges.put(new GraphEdge(i, j), null);
         matrix[i][j] = 1;
         if (null == matrix[j][i]) {
             if (graphType == SIMPLE_DIRECTED) {
@@ -116,6 +118,7 @@ public class AdjacencyMatrix implements Graph {
         if (i > size - 1 || j > size - 1) {
             throw new IllegalArgumentException("Vertex is not found in matrix.");
         }
+        edges.remove(new GraphEdge(i, j));
         matrix[i][j] = null;
         matrix[j][i] = null;
         numberOfEdges--;
@@ -240,6 +243,11 @@ public class AdjacencyMatrix implements Graph {
     @Override
     public int getWeight(int source, int destination) {
         return matrix[source][destination];
+    }
+
+    @Override
+    public Map<GraphEdge, Integer> getEdges() {
+        return edges;
     }
 
 }

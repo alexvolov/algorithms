@@ -41,13 +41,12 @@ public class DijkstrasAlgorithm {
         distance[source] = source;
 
         while (!heap.isEmpty()) {
-            int u = heap.deleteTop();
-
-            for (Integer v : graph.getNeighbours(u)) {
-                int weight = graph.getWeight(u, v) + distance[u];
-                if (distance[u] != INFINITY && weight < distance[v]) {
-                    distance[v] = weight;
-                    prev[v] = u;
+            int current = heap.deleteTop();
+            for (Integer n : graph.getNeighbours(current)) {
+                int weight = graph.getWeight(current, n) + distance[current];
+                if (weight < distance[n]) {
+                    distance[n] = weight;
+                    prev[n] = current;
                 }
             }
         }

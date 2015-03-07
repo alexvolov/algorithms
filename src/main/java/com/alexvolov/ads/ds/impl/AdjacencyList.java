@@ -1,12 +1,10 @@
 package com.alexvolov.ads.ds.impl;
 
 import com.alexvolov.ads.ds.Graph;
+import com.alexvolov.ads.ds.common.GraphEdge;
 import com.alexvolov.ads.ds.common.GraphType;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static com.alexvolov.ads.ds.common.GraphType.SIMPLE_DIRECTED;
 import static com.alexvolov.ads.ds.common.GraphType.SIMPLE_UNDIRECTED;
@@ -27,6 +25,7 @@ public class AdjacencyList implements Graph {
     private GraphType graphType;
     private int numberOfEdges;
     private Set<Integer> startNodes;
+    private Map<GraphEdge, Integer> edges;
 
     /**
      * Constrictor which creates a new instance of adjacency list.
@@ -39,6 +38,7 @@ public class AdjacencyList implements Graph {
             throw new IllegalArgumentException("Number of vertices must be grater than zero.");
         }
 
+        this.edges = new HashMap<GraphEdge, Integer>();
         this.size = size;
         this.list = new HashMap<Integer, Map<Integer, Integer>>();
         this.startNodes = new HashSet<Integer>();
@@ -64,6 +64,7 @@ public class AdjacencyList implements Graph {
             throw new IllegalArgumentException("Vertex is not found in matrix.");
         }
 
+        edges.put(new GraphEdge(i, j), null);
         final Map<Integer, Integer> origin = list.get(i);
         origin.put(j, 1);
         final Map<Integer, Integer> destination = list.get(j);
@@ -99,6 +100,7 @@ public class AdjacencyList implements Graph {
             throw new IllegalArgumentException("Weight cannot be negative.");
         }
 
+        edges.put(new GraphEdge(i, j), weight);
         final Map<Integer, Integer> origin = list.get(i);
         origin.put(j, weight);
         final Map<Integer, Integer> destination = list.get(j);
@@ -167,6 +169,7 @@ public class AdjacencyList implements Graph {
         if (i > size - 1 || j > size - 1) {
             throw new IllegalArgumentException("Vertex is not found in matrix.");
         }
+        edges.remove(new GraphEdge(i, j));
         final Map<Integer, Integer> origin = list.get(i);
         final Map<Integer, Integer> destination = list.get(j);
         origin.remove(j);
@@ -235,6 +238,11 @@ public class AdjacencyList implements Graph {
     public int getWeight(int source, int destination) {
         final Map<Integer, Integer> origin = list.get(source);
         return origin.get(destination);
+    }
+
+    @Override
+    public Map<GraphEdge, Integer> getEdges() {
+        return edges;
     }
 
 }

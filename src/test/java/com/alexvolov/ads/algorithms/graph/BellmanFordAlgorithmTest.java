@@ -10,17 +10,17 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * Test class for {@link com.alexvolov.ads.algorithms.graph.DijkstrasAlgorithm}.
+ * Test class for {@link com.alexvolov.ads.algorithms.graph.BellmanFordAlgorithm}.
  *
  * @author Alexander Volov (mailto: alevolov@gmail.com)
- * @version 05.03.15
+ * @version 07.03.15
  */
-public class DijkstrasAlgorithmTest {
+public class BellmanFordAlgorithmTest {
 
     @Test
     public void test_findShortestPathMatrix() {
         // data
-        int[] expected = new int[]{0, 8, 10, 12, 18, 13, 21};
+        int[] expected = new int[]{0, 0, 0, 0, 1, 2, 5};
 
         // prepare
         Graph graph = new AdjacencyMatrix(7, GraphType.WEIGHTED_DIRECTED);
@@ -35,16 +35,25 @@ public class DijkstrasAlgorithmTest {
         graph.addEdge(5, 6, 8);
 
         // test
-        int[] actual = new DijkstrasAlgorithm().getShortestPath(graph, 0);
+        int[] actual = new BellmanFordAlgorithm().getShortestPath(graph, 0);
 
         // verify
         assertThat(actual, is(expected));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void test_wrongGraph() {
+        // prepare
+        Graph graph = new AdjacencyList(7, GraphType.SIMPLE_UNDIRECTED);
+
+        // test
+        int[] actual = new BellmanFordAlgorithm().getShortestPath(graph, 0);
+    }
+
     @Test
     public void test_findShortestPathList() {
         // data
-        int[] expected = new int[]{0, 8, 10, 12, 18, 13, 21};
+        int[] expected = new int[]{0, 0, 0, 0, 1, 2, 5};
 
         // prepare
         Graph graph = new AdjacencyList(7, GraphType.WEIGHTED_DIRECTED);
@@ -59,7 +68,7 @@ public class DijkstrasAlgorithmTest {
         graph.addEdge(5, 6, 8);
 
         // test
-        int[] actual = new DijkstrasAlgorithm().getShortestPath(graph, 0);
+        int[] actual = new BellmanFordAlgorithm().getShortestPath(graph, 0);
 
         // verify
         assertThat(actual, is(expected));

@@ -1,7 +1,10 @@
 package com.alexvolov.ads.ds;
 
+import com.alexvolov.ads.ds.common.GraphEdge;
 import com.alexvolov.ads.ds.common.GraphType;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -101,5 +104,12 @@ public interface Graph {
      * @return weight of type {@code int}.
      */
     int getWeight(int source, int destination);
+
+    /**
+     * Returns list of all edges.
+     *
+     * @return dictionary of {@code GraphEdge} objects, with weight's.
+     */
+    Map<GraphEdge, Integer> getEdges();
 
 }
