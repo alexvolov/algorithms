@@ -112,4 +112,21 @@ public interface Graph {
      */
     Map<GraphEdge, Integer> getEdges();
 
+    /**
+     * Adds a new vertex to the graph. Has O(N^2) complexity in case
+     * of adjacency matrix implementation.
+     *
+     * @return vertex number of type {@code int}.
+     */
+    int addVertex();
+
+    /**
+     * Changes weight of an edge.
+     *
+     * @param source origin vertex.
+     * @param destination destination vertex.
+     * @param weight cost/weight of the edge.
+     */
+    void changeWeight(int source, int destination, Integer weight);
+
 }

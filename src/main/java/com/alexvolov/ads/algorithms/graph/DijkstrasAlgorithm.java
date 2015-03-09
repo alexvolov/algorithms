@@ -8,6 +8,7 @@ import com.alexvolov.ads.ds.impl.BinaryHeap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * Searching the shortest path between two vertices is a very common problem
@@ -31,27 +32,72 @@ public class DijkstrasAlgorithm {
     public static int[] getShortestPath(Graph graph, int source) {
         int[] distance = new int[graph.getSize()];
         int[] prev = new int[graph.getSize()];
-        Heap heap = new BinaryHeap(graph.getSize(), HeapType.MIN_HEAP);
+        PriorityQueue<Distance> queue = new PriorityQueue<Distance>();
 
-        for (int i = 0; i < graph.getSize(); i++) {
-            distance[i] = INFINITY;
-            heap.insert(i);
-        }
+        Arrays.fill(distance, INFINITY);
+        distance[source] = 0;
+        queue.offer(new Distance(source, 0));
 
-        distance[source] = source;
-
-        while (!heap.isEmpty()) {
-            int current = heap.deleteTop();
-            for (Integer n : graph.getNeighbours(current)) {
-                int weight = graph.getWeight(current, n) + distance[current];
-                if (distance[current] != INFINITY && weight < distance[n]) {
+        while (!queue.isEmpty()) {
+            Distance current = queue.poll();
+            for (Integer n : graph.getNeighbours(current.getVertex())) {
+                int weight = graph.getWeight(current.getVertex(), n) + distance[current.getVertex()];
+                if (distance[current.getVertex()] != INFINITY && weight < distance[n]) {
                     distance[n] = weight;
-                    prev[n] = current;
+                    prev[n] = current.getVertex();
+                    Distance newDistance = new Distance(n, weight);
+                    if (queue.contains(newDistance)) {
+                        queue.remove(newDistance);
+                    }
+                    queue.offer(newDistance);
                 }
             }
         }
 
         return distance;
+    }
+
+    private static class Distance implements Comparable<Distance> {
+
+        private int vertex;
+        private int distance;
+
+        /**
+         * Constructs a new object with given values.
+         *
+         * @param vertex vertex id.
+         * @param distance distance to vertex
+         */
+        private Distance(int vertex, int distance) {
+            this.vertex = vertex;
+            this.distance = distance;
+        }
+
+        public int getVertex() {
+            return vertex;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Distance distance = (Distance) o;
+
+            if (vertex != distance.vertex) return false;
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            return vertex;
+        }
+
+        @Override
+        public int compareTo(Distance o) {
+            return this.distance < o.distance ? -1 : this.distance == o.distance ? 0 : 1;
+        }
     }
 
 }

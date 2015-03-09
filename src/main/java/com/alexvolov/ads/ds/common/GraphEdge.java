@@ -57,4 +57,5 @@ public class GraphEdge {
         result = 31 * result + destination;
         return result;
     }
+
 }

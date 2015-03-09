@@ -1,6 +1,7 @@
 package com.alexvolov.ads.algorithms.graph;
 
 import com.alexvolov.ads.ds.Graph;
+import com.alexvolov.ads.ds.common.AlgorithmException;
 import com.alexvolov.ads.ds.common.GraphType;
 import com.alexvolov.ads.ds.impl.AdjacencyList;
 import com.alexvolov.ads.ds.impl.AdjacencyMatrix;
@@ -18,7 +19,7 @@ import static org.junit.Assert.assertThat;
 public class BellmanFordAlgorithmTest {
 
     @Test
-    public void test_findShortestPathMatrix() {
+    public void test_findShortestPathMatrix() throws AlgorithmException  {
         // data
         int[] expected = new int[]{0, 0, 0, 0, 1, 2, 5};
 
@@ -42,7 +43,7 @@ public class BellmanFordAlgorithmTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void test_wrongGraph() {
+    public void test_wrongGraph() throws AlgorithmException  {
         // prepare
         Graph graph = new AdjacencyList(7, GraphType.SIMPLE_UNDIRECTED);
 
@@ -51,7 +52,7 @@ public class BellmanFordAlgorithmTest {
     }
 
     @Test
-    public void test_findShortestPathList() {
+    public void test_findShortestPathList() throws AlgorithmException {
         // data
         int[] expected = new int[]{0, 0, 0, 0, 1, 2, 5};
 

@@ -245,9 +245,63 @@ public class AdjacencyMatrix implements Graph {
         return matrix[source][destination];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Map<GraphEdge, Integer> getEdges() {
         return edges;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int addVertex() {
+        size++;
+        Integer[][] tempMatrix = new Integer[size][size];
+
+        for (int i = 0; i < size - 1; i++) {
+            for (int k = 0; k < size - 1; k++) {
+                tempMatrix[i][k] = matrix[i][k];
+            }
+        }
+
+        matrix = tempMatrix;
+        startNodes.add(size - 1);
+
+        return size - 1;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void changeWeight(int source, int destination, Integer weight) {
+
+        if (graphType != WEIGHTED_DIRECTED) {
+            throw new UnsupportedOperationException("This operation is supported on weighted and directed graph.");
+        }
+
+        if (source > size - 1 || destination > size - 1) {
+            throw new IllegalArgumentException("Vertex is not found in matrix.");
+        }
+        GraphEdge edge = new GraphEdge(source, destination);
+        if (!edges.containsKey(edge)) {
+            throw new IllegalArgumentException("Such edge does not exist.");
+        }
+
+        if (null == weight) {
+            throw new IllegalArgumentException("Weight cannot be null.");
+        }
+
+        if (weight < 0 && graphType == WEIGHTED_DIRECTED) {
+            throw new IllegalArgumentException("Weight cannot be negative.");
+        }
+
+        edges.put(edge, weight);
+        matrix[source][destination] = weight;
+        matrix[destination][source] = weight * (-1);
     }
 
 }

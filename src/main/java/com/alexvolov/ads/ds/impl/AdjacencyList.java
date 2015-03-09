@@ -240,9 +240,55 @@ public class AdjacencyList implements Graph {
         return origin.get(destination);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Map<GraphEdge, Integer> getEdges() {
         return edges;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int addVertex() {
+        size++;
+        list.put(size - 1, new HashMap<Integer, Integer>());
+        startNodes.add(size - 1);
+        return size - 1;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void changeWeight(int source, int destination, Integer weight) {
+        if (graphType != WEIGHTED_DIRECTED) {
+            throw new UnsupportedOperationException("This operation is supported on weighted and directed graph.");
+        }
+
+        if (source > size - 1 || destination > size - 1) {
+            throw new IllegalArgumentException("Vertex is not found in matrix.");
+        }
+        GraphEdge edge = new GraphEdge(source, destination);
+        if (!edges.containsKey(edge)) {
+            throw new IllegalArgumentException("Such edge does not exist.");
+        }
+
+        if (null == weight) {
+            throw new IllegalArgumentException("Weight cannot be null.");
+        }
+
+        if (weight < 0 && graphType == WEIGHTED_DIRECTED) {
+            throw new IllegalArgumentException("Weight cannot be negative.");
+        }
+
+        edges.put(edge, weight);
+        Map<Integer, Integer> o = list.get(source);
+        o.put(source, weight);
+        Map<Integer, Integer> d = list.get(destination);
+        d.put(source, weight * (-1));
     }
 
 }
