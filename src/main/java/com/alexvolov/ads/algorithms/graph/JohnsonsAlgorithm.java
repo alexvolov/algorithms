@@ -47,7 +47,7 @@ public class JohnsonsAlgorithm {
         // we get from Bellman-Ford algorithm.
         int weight;
         for (GraphEdge edge : graph.getEdges().keySet()) {
-            weight = graph.getEdges().get(edge) + distance[edge.getSource()] - distance[edge.getSource()];
+            weight = graph.getEdges().get(edge) + distance[edge.getSource()] - distance[edge.getDestination()];
             graph.changeWeight(edge.getSource(), edge.getDestination(), weight);
         }
 
