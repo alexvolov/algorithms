@@ -1,7 +1,7 @@
 package com.alexvolov.ads.algorithms.graph;
 
 import com.alexvolov.ads.ds.Graph;
-import com.alexvolov.ads.ds.common.AlgorithmException;
+import com.alexvolov.ads.common.AlgorithmException;
 import com.alexvolov.ads.ds.common.GraphEdge;
 import com.alexvolov.ads.ds.common.GraphType;
 

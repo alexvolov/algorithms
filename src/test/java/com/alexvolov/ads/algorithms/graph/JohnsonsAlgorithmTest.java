@@ -1,16 +1,11 @@
 package com.alexvolov.ads.algorithms.graph;
 
 import com.alexvolov.ads.ds.Graph;
-import com.alexvolov.ads.ds.common.AlgorithmException;
-import com.alexvolov.ads.ds.common.GraphEdge;
+import com.alexvolov.ads.common.AlgorithmException;
 import com.alexvolov.ads.ds.common.GraphType;
 import com.alexvolov.ads.ds.impl.AdjacencyList;
 import com.alexvolov.ads.ds.impl.AdjacencyMatrix;
 import org.junit.Test;
-
-import java.util.HashSet;
-import java.util.PriorityQueue;
-import java.util.Set;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;

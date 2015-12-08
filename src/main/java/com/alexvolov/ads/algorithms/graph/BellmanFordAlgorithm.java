@@ -1,7 +1,7 @@
 package com.alexvolov.ads.algorithms.graph;
 
 import com.alexvolov.ads.ds.Graph;
-import com.alexvolov.ads.ds.common.AlgorithmException;
+import com.alexvolov.ads.common.AlgorithmException;
 import com.alexvolov.ads.ds.common.GraphEdge;
 import com.alexvolov.ads.ds.common.GraphType;
 
@@ -30,7 +30,7 @@ public class BellmanFordAlgorithm {
      * @param graph on which Dijkstra's algorithm is applied to.
      * @param source a starting node.
      * @return predecessor array.
-     * @throws com.alexvolov.ads.ds.common.AlgorithmException if negative cycle detected.
+     * @throws AlgorithmException if negative cycle detected.
      */
     public int[] getShortestPath(Graph graph, int source) throws AlgorithmException {
         if (graph.getType() != GraphType.WEIGHTED_DIRECTED) {

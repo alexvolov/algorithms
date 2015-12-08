@@ -1,4 +1,4 @@
-package com.alexvolov.ads.ds.common;
+package com.alexvolov.ads.common;
 
 /**
  * Algorithm exception.
