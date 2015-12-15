@@ -1,7 +1,5 @@
 package com.alexvolov.ads.algorithms.cryptography;
 
-import com.alexvolov.ads.common.AlgorithmException;
-
 /**
  * Simple implementation of cryptography algorithm
  * known as the Caesar cipher.
