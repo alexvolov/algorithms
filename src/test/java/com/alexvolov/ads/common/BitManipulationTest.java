@@ -76,4 +76,30 @@ public class BitManipulationTest {
         assertEquals("The toggleBit() method doesn't work!", expected, actual);
     }
 
+    @Test
+    public void testClearAllBitsFromMsbToI() {
+        // data
+        int expected = 21;// = 000010101
+        int number = 341; // = 101010101
+
+        // test
+        int actual = BitManipulation.clearAllBitsFromMsbToI(number, 6);
+
+        // verify
+        assertEquals("The toggleBit() method doesn't work!", expected, actual);
+    }
+
+    @Test
+    public void testClearAllBitsFromIToZero() {
+        // data
+        int expected = 252;// = 11111100
+        int number = 255;  // = 11111111
+
+        // test
+        int actual = BitManipulation.clearAllBitsFromIToZero(number, 1);
+
+        // verify
+        assertEquals("The toggleBit() method doesn't work!", expected, actual);
+    }
+
 }
