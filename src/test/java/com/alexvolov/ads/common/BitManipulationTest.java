@@ -86,7 +86,7 @@ public class BitManipulationTest {
         int actual = BitManipulation.clearAllBitsFromMsbToI(number, 6);
 
         // verify
-        assertEquals("The toggleBit() method doesn't work!", expected, actual);
+        assertEquals("The method doesn't work!", expected, actual);
     }
 
     @Test
@@ -99,7 +99,69 @@ public class BitManipulationTest {
         int actual = BitManipulation.clearAllBitsFromIToZero(number, 1);
 
         // verify
-        assertEquals("The toggleBit() method doesn't work!", expected, actual);
+        assertEquals("The method doesn't work!", expected, actual);
+    }
+
+    @Test
+    public void testToInteger() {
+        // data
+        int expected = 5;
+        String binNumber = "101";
+
+        // test
+        int actual = BitManipulation.toInteger(binNumber);
+
+        // verify
+        assertEquals("The method doesn't work!", expected, actual);
+    }
+
+    @Test
+    public void testToBinary() {
+        // data
+        int number = 1024;
+        String expected = "10000000000";
+
+        // test
+        String actual = BitManipulation.toBinaryString(number);
+
+        // verify
+        assertEquals("The method doesn't work!", expected, actual);
+    }
+
+    @Test
+    public void testRealToBinary() {
+        // data
+        double number = 2.75;
+        String expected = "10.11";
+
+        // test
+        String actual = BitManipulation.toBinaryString(number);
+
+        // verify
+        assertEquals("The method doesn't work!", expected, actual);
+    }
+
+    @Test
+    public void testToDouble() {
+        // data
+        double expected = 2.75;
+        String number = "10.11";
+
+        // test
+        double actual = BitManipulation.toDouble(number);
+
+        // verify
+        assertEquals("The method doesn't work!", expected, actual, 0);
+    }
+
+    @Test
+    public void testIsPowerOfTwo() {
+        // verify
+        assertTrue(BitManipulation.isPowerOfTwo(2));
+        assertTrue(BitManipulation.isPowerOfTwo(4));
+        assertFalse(BitManipulation.isPowerOfTwo(5));
+        assertTrue(BitManipulation.isPowerOfTwo(8));
+        assertFalse(BitManipulation.isPowerOfTwo(25));
     }
 
 }
