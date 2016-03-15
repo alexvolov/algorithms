@@ -2,15 +2,15 @@ Algorithms
 ==========
 
 Graph
-Bellma nFord Algorithm
-Breadth First Search
-Depth FirstS earch
-Dijkstras Algorithm
-Johnsons Algorithm
-Kruskals Algorithm
-Prims Algorithm
-Strongly Connected Components
-Topological Sort
+* Bellman Ford Algorithm
+* Breadth First Search
+* Depth First Search
+* Dijkstra's Algorithm
+* Johnson's Algorithm
+* Kruskal's Algorithm
+* Prim's Algorithm
+* Strongly Connected Components
+* Topological Sort
 
 Data Structures
 ==========
