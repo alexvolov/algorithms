@@ -47,7 +47,8 @@ public class ArrayStack<T> implements Stack<T>  {
     public T pop() {
         T result = null;
         if (topIndex != -1) {
-            result = stack[topIndex--];
+            result = stack[topIndex];
+            stack[topIndex--] = null;
         }
         return result;
     }
