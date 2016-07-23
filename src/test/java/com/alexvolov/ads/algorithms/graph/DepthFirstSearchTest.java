@@ -96,29 +96,29 @@ public class DepthFirstSearchTest{
         // data
         List<Integer> expected = new ArrayList<Integer>();
         expected.add(0);
+        expected.add(11);
+        expected.add(12);
+        expected.add(13);
+        expected.add(14);
+        expected.add(15);
+        expected.add(18);
+        expected.add(19);
+        expected.add(20);
+        expected.add(16);
+        expected.add(17);
+        expected.add(21);
+        expected.add(22);
+        expected.add(23);
         expected.add(1);
+        expected.add(7);
+        expected.add(8);
+        expected.add(9);
+        expected.add(10);
         expected.add(2);
         expected.add(3);
         expected.add(4);
         expected.add(5);
         expected.add(6);
-        expected.add(7);
-        expected.add(8);
-        expected.add(9);
-        expected.add(10);
-        expected.add(11);
-        expected.add(12);
-        expected.add(13);
-        expected.add(14);
-        expected.add(21);
-        expected.add(22);
-        expected.add(23);
-        expected.add(15);
-        expected.add(16);
-        expected.add(17);
-        expected.add(18);
-        expected.add(19);
-        expected.add(20);
 
         // prepare
         Graph graph = new AdjacencyList(24, GraphType.SIMPLE_DIRECTED);

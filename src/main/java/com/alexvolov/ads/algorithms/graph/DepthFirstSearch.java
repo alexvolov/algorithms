@@ -35,21 +35,17 @@ public class DepthFirstSearch {
         visited = new ArrayList<Integer>();
 
         Stack<Integer> stack = new LinkedListStack<Integer>();
-        Stack<Integer> auxStack;
         stack.push(node);
 
+        Integer v;
         while(!stack.isEmpty()){
-            Integer v = stack.pop();
+            v = stack.pop();
             if(!visited.contains(v)) {
                 visited.add(v);
-                auxStack = new LinkedListStack<Integer>();
                 for(Integer w : graph.getNeighbours(v)){
                     if(!visited.contains(w)){
-                        auxStack.push(w);
+                        stack.push(w);
                     }
-                }
-                while(!auxStack.isEmpty()){
-                    stack.push(auxStack.pop());
                 }
             }
         }
